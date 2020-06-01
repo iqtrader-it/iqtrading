@@ -1,0 +1,43 @@
+{% extends "layout/base.html" %}
+
+{% block title %}{{ title }}{% endblock title %}
+
+
+{% block content %}
+<div id="content" class="container">
+    <h3>{{ title }}</h3>
+    <hr>
+    <form id="postupdateform" method="post" action="/news/update/{{ post.id }}">
+        {% csrf_token %}
+        <div>
+            {% for field in form %}
+                <div class="form-group">
+                    {{ field.label_tag }}
+                    <div>
+                        {{ field }}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <p style="margin-top: 30px">
+            <input id="b1" type="submit" value="Save" class="btn btn-success">
+            <input id="b2" type="reset" value="Clear" class="btn btn-success">
+        </p>
+    </form>
+    <a href="/news">Bact to list of news</a>
+    <hr>
+</div>
+<style>
+    .form-group input {
+        width: 50%;
+        height: 30px;
+    }
+    .form-group textarea{
+        width: 50%
+    }
+    #b1, #b2 {
+        width: 150px
+    }
+
+</style>
+{% endblock content %}

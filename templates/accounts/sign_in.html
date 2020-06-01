@@ -1,0 +1,26 @@
+{% extends "layout/base.html" %}
+
+{% block title %}{{ title }}{% endblock title %}
+
+
+{% block content %}
+<div id="'content" class="container">
+    <h3>{{ title }}</h3>
+    <hr>
+    <form action="/accounts/sign_in" method="post">
+        {% csrf_token %}
+        <p>
+            <label for="login">Login</label><br>
+            <input type="text" id="login" name="login" class="inp"required>
+        </p>
+        <p>
+            <label for="pass1">Password</label><br>
+            <input type="password" id="pass1" name="pass1" class="inp"required>
+        </p>
+        <p stayle="margin-top: 30px">
+            <input type="submit" value="Enter" class="btn btn-success" style="width: 150px">
+            <input type="reset" value="Cancel" class="btn btn-success" style="width: 150px">
+        </p>
+    </form>
+</div>
+{% endblock content %}

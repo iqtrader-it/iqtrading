@@ -1,0 +1,112 @@
+{% extends 'layout/base.html' %}
+
+
+{% block title %}
+    {{ title }}
+{% endblock title %}
+
+
+{% block content %}
+
+<div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+            <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img"><rect width="100%" height="100%" fill="#777"/></svg>
+            <div class="container">
+              <div class="carousel-caption text-left">
+                <h1>IQTrading. You Are Welcome!</h1>
+                <p style="margin-top: 20px">Nobody is perfect)</p>
+                <p style="margin-top: 110px"><a class="btn btn-lg btn-primary" href="https://www.bloomberg.com/europe" target="_blank" role="button" target="_blank">Bloomberg Europe</a></p>
+              </div>
+            </div>
+      </div>
+      <div class="carousel-item">
+            <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img"><rect width="100%" height="100%" fill="#777"/></svg>
+            <div class="container">
+              <div class="carousel-caption">
+                <h1>Trend is your frend until the end.</h1>
+                <p style="margin-top: 20px">Try to trade with our portal.</p>
+                <p style="margin-top: 110px"><a class="btn btn-lg btn-primary" href="https://finviz.com/" target="_blank" role="button">Finviz</a></p>
+              </div>
+            </div>
+      </div>
+      <div class="carousel-item">
+            <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img"><rect width="100%" height="100%" fill="#777"/></svg>
+            <div class="container">
+              <div class="carousel-caption text-right">
+                  <h1>Always control your risks.</h1>
+                  <p style="margin-top: 20px">Always use both types of analysis: Fundamental and Technics.</p>
+                  <p style="margin-top: 110px"><a class="btn btn-lg btn-primary" href="https://www.morningstar.com/" target="_blank" role="button">Morning Star</a></p>
+              </div>
+            </div>
+      </div>
+    </div>
+    <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+</div>
+
+<div class="container marketing">
+
+    <!-- Three columns of text below the carousel -->
+    <div class="row">
+      <div class="col-lg-4">
+          <img style="width: 140px" src="/static/img/upbg.jpg" alt="">
+        <h2>Heading</h2>
+        <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>
+        <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+      </div><!-- /.col-lg-4 -->
+      <div class="col-lg-4">
+        <img style="width: 140px" src="/static/img/upbg.jpg" alt="">        <h2>Heading</h2>
+        <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
+        <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+      </div><!-- /.col-lg-4 -->
+      <div class="col-lg-4">
+        <img style="width: 140px" src="/static/img/upbg.jpg" alt="">        <h2>Heading</h2>
+        <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+        <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+      </div><!-- /.col-lg-4 -->
+    </div><!-- /.row -->
+
+
+    <!-- START THE FEATURETTES -->
+
+    {% for post in posts %}
+    <hr class="featurette-divider">
+
+    <div class="row featurette">
+        <div class="{% cycle 'col-md-7' 'col-md-7 order-md-2' %}">
+            <h2 class="featurette-heading">{{ post.topic }}</h2>
+            <p class="lead">{{ post.about }}</p>
+            <a href="/news/show/{{ post.id }}" class="btn btn-primary btn" role="button" aria-pressed="true">Show</a>
+        </div>
+        <div class="col-md-5">
+            <img src="/media/{{ post.image }}" width="100%" align="left" style="margin-right: 50px">
+        </div>
+    </div>
+    {% endfor %}
+    <hr class="featurette-divider">
+    <style>
+        .featurette-heading {
+            margin-top: 0rem;
+        }
+        .featurette-divider {
+            margin: 3rem 0;
+        }
+    </style>
+
+    <!-- /END THE FEATURETTES -->
+
+  </div><!-- /.container -->
+
+{% endblock content %}

@@ -1,0 +1,59 @@
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <div class="container">
+      <img style="width: 35px" src="/static/img/upbg.jpg" alt="">
+
+        <a class="navbar-brand" href="/home">IQTrading</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="/news/catalog">News <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/analytics">Analytics</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/charts">Charts</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/forum">Forum</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/blog">Blog</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/home/about">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/home/contacts">Contacts</a>
+            </li>
+          </ul>
+          <ul class="navbar-nav navbar-right">
+            <a class="nav-link" href="" style="margin-right: 50px">
+              Hello,
+              {% if user.is_authenticated %}
+                {{ user.username }}!
+              {% else %}
+                Guest!
+              {% endif %}
+            </a>
+            {% if not user.is_authenticated %}
+              <li class="nav-item">
+                <a class="nav-link" href="/accounts/sign_in">Sign in</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/accounts/sign_up">Registration</a>
+              </li>
+            {% else %}
+              <li class="nav-item">
+                <a class="nav-link" href="/accounts/sign_out">Sign out</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/accounts/profile">Profile</a>
+              </li>
+            {% endif %}
+          </ul>
+        </div>
+    </div>
+</nav>
