@@ -39,7 +39,7 @@
                         <div class="form-group">
                             <select name="head" id="id_head">
                                 {% for h in parser_heads %}
-                                    <option value="{{ h.head.1 }}">{{ h.time }}{{ h.head.0 }}</option>
+                                    <option value="{{ h.head.1 }}">{{ h.head.0 }}</option>
                                 {% endfor %}
                             </select>
                         </div>
@@ -50,11 +50,12 @@
                         <label for="id_content1">Content:</label>
                         <div class="form-group">
                             <textarea name="content" id="id_content1" cols="40" rows="10"></textarea>
+                            <script>CKEDITOR.replace( 'id_content' );</script>
+                            <script>CKEDITOR.replace( 'id_content1' );</script>
                         </div>
                     </div>
                     <p style="margin-top: 20px">
-                        <a href="/news/show/{{ post.id }}" class="btn btn-primary btn" role="button" aria-pressed="true">Get Content</a>
-
+                        <input id="b3" type="button" value="Fill Form" class="btn btn-primary btn">
                     </p>
                 </form>
             </div>
@@ -73,23 +74,31 @@
     #b1, #b2, #b3 {
         width: 150px
     }
-
 </style>
-<script src="https://code.jquery.com/jquery-latest.js">
-
-</script>
+<script src="https://code.jquery.com/jquery-latest.js"></script>
 <script>
     $(document).ready(function () {
         $('#id_head').change(function () {
-            alert($(this).val());
+            CKEDITOR.instances.id_content1.setData("");
+            //alert($("#id_head option:selected").text());
             $.ajax({
                url:"/news/add_ajax",
                data:"link="+$(this).val(),
                success:function(result){
-                    alert(3);
-                  $("#id_content1").val(result.content);
+                    //$("#id_content1").val(result.content);
+                    //CKEDITOR.instances.id_content.insertText( result.content );
+                    CKEDITOR.instances.id_content1.insertHtml( result.content );
                 }
             });
+        });
+        $("#b3").click(function () {
+            $("#id_topic").val($("#id_head option:selected").text());
+                var fill = CKEDITOR.instances.id_content1.getData();
+                //CKEDITOR.instances.id_content.insertText("fill");
+                CKEDITOR.instances.id_content.insertHtml(fill);
+        });
+        $("#b2").click(function () {
+            CKEDITOR.instances.id_content.setData("");
         });
     });
 </script>
