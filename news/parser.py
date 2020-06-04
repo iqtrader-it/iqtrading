@@ -42,12 +42,16 @@ def get_link_head(html):
 
 def get_link_content(html):
     soup = BeautifulSoup(html, 'html.parser')
-    content = soup.find('div', class_='content').find('div', class_='news_text').find_all('p')
+    content_all = soup.find('div', class_='content').find('div', class_='news_text').contents
     parser_content = ''
-    for i in content:
-        try:
-            block = i.find('p').text
-            parser_content += block
-        except:
-            continue
+    for i in content_all:
+        parser_content += str(i)
+    # parser_content = ''
+    # for i in content:
+    #     try:
+    #         block = i.find('p').text
+    #         parser_content += block
+    #     except:
+    #         continue
+    # return parser_content
     return parser_content

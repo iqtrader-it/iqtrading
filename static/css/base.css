@@ -109,8 +109,23 @@ body {
 }
 
 /* My test selectors */
-#myCarousel {
-    background-image: url("/static/img/upbg.jpg");
+#logo1 {
+    background-image: url("/static/img/5.jpg");
+    background-size: cover;
+}
+
+#logo2 {
+    background-image: url("/static/img/4.jpeg");
+    background-size: cover;
+}
+
+#logo3 {
+    background-image: url("/static/img/6.jpeg");
+    background-size: cover;
+}
+
+#nybw {
+    background-image: url("/static/img/fontny1.jpeg");
     background-size: cover;
 }
 
@@ -126,5 +141,4 @@ body {
     padding: 3px 5px;
     text-align: center;
 }
-
-
+#
