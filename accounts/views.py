@@ -18,28 +18,25 @@ def sign_up(request):
         #Checking data from form
         if su_pass1 != su_pass2 or len(su_pass1) < 8:
             data['color'] = 'red'
-            data['text'] = 'Passwords mismatch or password contains less then 8 symbols. Please try again.'
-            return render(request, 'accounts/report.html', context=data)
+            data['report'] = 'Passwords mismatch or password contains less then 8 symbols. Please try again.'
+        # Adding user to database
         else:
             data['login'] = su_login
             data['pass1'] = su_pass1
             data['pass2'] = su_pass2
             data['email'] = su_email
-
-        # Adding user to database
-        user = User.objects.create_user(su_login, su_email, su_pass1)
-        user.save()
-
-        # Generating report
-        data['title'] = 'Report of the registration'
-        if user is None:
-            data['color'] = 'red'
-            data['report'] = 'Registration error'
-        else:
-            data['color'] = 'blue'
-            data['report'] = 'Congratulations! You are registered.'
-
-    return render(request, 'accounts/report.html', context=data)
+            user = User.objects.create_user(su_login, su_email, su_pass1)
+            user.save()
+            # Generating report
+            data['title'] = 'Report of the registration'
+            if user is None:
+                data['color'] = 'red'
+                data['report'] = 'Registration error'
+            else:
+                data['color'] = 'blue'
+                data['report'] = 'Congratulations! You are registered.'
+                login(request, user)
+        return render(request, 'accounts/report.html', context=data)
 
 
 
